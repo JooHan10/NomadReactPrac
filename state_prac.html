@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+      counter = counter + 1;
+      //   ReactDOM.render(<Container />, root); // 2. countUp 함수가 호출될 때마다 렌더링
+      render();
+    }
+    function render() {
+      ReactDOM.render(<Container />, root); // 3. 생각해보니 렌더링은 여러번 반복되기에 함수로 만들어 사용해보자
+    }
+    const Container = () => (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick={countUp}>Click me</button>
+      </div>
+    );
+
+    // ReactDOM.render(<Container />, root); // 1. 어플리케이션이 시작될 때 최초 렌더링
+    render();
+  </script>
+</html>
